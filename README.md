@@ -5,3 +5,4 @@
 - It presents concepts and hands-on experience for designing and writing programs using one or more programming languages currently important in solving real-world problems.
 
 ## Guideline
+- [Bank Account Simulation](https://github.com/MengyaoHuang/Programming-for-Science-and-Engineering/tree/master/Bank%20Account%20Simulation)
