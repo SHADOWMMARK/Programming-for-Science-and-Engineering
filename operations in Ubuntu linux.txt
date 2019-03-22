@@ -1,0 +1,12 @@
+Unicode thing: save your cpp file into txt utf-8 format.cpp and run
+where is the Ubuntu system: C-user-TK-Appdata(Hidden)-Local-Packages-Canonical...Ubuntu-Localstate-rootfs-home-DONE
+operations:
+cd: enter
+ls: check the list
+su root: give the root permission
+sudo passwd -u root
+sudo passwd root: both used to change keynumber
+mkdir: create new things
+g++ HW1.cpp -o HW1: use g++ to compile and run the code
+if go directly to the next line, then continue to enter: ./HW1
+which would get the result
