@@ -6,3 +6,4 @@
 
 ## Guideline
 - [Bank Account Simulation](https://github.com/MengyaoHuang/Programming-for-Science-and-Engineering/tree/master/Bank%20Account%20Simulation)
+- [Image Pixels Operations Class Constructions](https://github.com/MengyaoHuang/Programming-for-Science-and-Engineering/tree/master/Image%20Pixels%20Operations%20Class%20Constructions)
