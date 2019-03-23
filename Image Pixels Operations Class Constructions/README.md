@@ -1,12 +1,8 @@
 # Image Pixels Operations Class Constructions
 
+this project will be using the object-oriented property of encapsulation using C++ classes. To be more specific, some classes abount image pixels operations would be constructed here for further use.
 
-
-
-
-Detailed Description:
-At this point in the course, you have been given an overview of basic object-oriented principles, and this
-project will be using the object-oriented property of encapsulation using C++ classes.
+## Introductions
 Colors are typically described as a combination of some amount of red, green, and blue (referred to as
 “RGB” values). With different amounts of red, green, and blue, you can create any color. For example, the
 color bright red would be represented as a full amount of red and no green and no blue, and a dimmer red
