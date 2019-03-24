@@ -1,0 +1,27 @@
+proj4.exe: LinkedNodeClass.o SortedListClass.o LIFOStackClass.o FIFOQueueClass.o project4.o
+	g++ -c LinkedNodeClass.o SortedListClass.o LIFOStackClass.o FIFOQueueClass.o project4.o -o proj4.exe
+	
+
+LinkedNodeClass.o: LinkedNodeClass.cpp LinkedNodeClass.h
+	g++ -c LinkedNodeClass.cpp -o LinkedNodeClass.o
+
+SortedListClass.o: SortedListClass.cpp SortedListClass.h
+	g++ -c SortedListClass.cpp -o SortedListClass.o
+
+LIFOStackClass.o: LIFOStackClass.cpp LIFOStackClass.h
+	g++ -c LIFOStackClass.cpp -o LIFOStackClass.o
+
+FIFOQueueClass.o: FIFOQueueClass.cpp FIFOQueueClass.h
+	g++ -c FIFOStackClass.cpp -o FIFOStackClass.o
+
+project4.o: project4.cpp
+	g++ -c project4.cpp -o project4.o
+
+
+
+clean:
+	
+	rm -rf LinkedNodeClass.o SortedListClass.o LIFOStackClass.o FIFOQueueClass.o project4.o proj4.exe
+
+
+
