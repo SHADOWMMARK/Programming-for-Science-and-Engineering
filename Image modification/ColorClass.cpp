@@ -113,7 +113,7 @@ bool ColorClass::addColor(ColorClass &rhs) {
     return temp_judge;
 }
 
-
+// different ctor that directly read from file
 bool ColorClass::readPixelFromFile(ifstream &inFile, int colorBound) {
     inFile >> redAmt >> greenAmt >> blueAmt;
     if (inFile.fail()) {
@@ -132,6 +132,7 @@ bool ColorClass::readPixelFromFile(ifstream &inFile, int colorBound) {
     return true;
 }
 
+// get and set method about the index
 int ColorClass::getIndicatorIndex() {
     return patternIndicatorIndex;
 }

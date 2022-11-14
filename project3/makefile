@@ -1,14 +1,11 @@
-﻿proj3.exe: RowColumnClass.o RectangleClass.o project3.o mainMenuOption.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
-	g++ RowColumnClass.o RectangleClass.o project3.o mainMenuOption.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o proj3.exe
+﻿project3.exe: RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
+	g++ RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o proj3.exe
 
 RowColumnClass.o: RowColumnClass.cpp RowColumnClass.h
 	g++ -c RowColumnClass.cpp -o RowColumnClass.o
 
 RectangleClass.o: RectangleClass.cpp RectangleClass.h
 	g++ -c RectangleClass.cpp -o RectangleClass.o
-
-mainOption.o: mainOption.cpp mainOption.h
-	g++ -c mainOption.cpp -o mainOption.o
 
 isCinValid.o: isCinValid.cpp isCinValid.h
 	g++ -c isCinValid.cpp -o isCinValid.o
@@ -29,4 +26,4 @@ PatternClass.o: PatternClass.cpp PatternClass.h
 	g++ -c PatternClass.cpp -o PatternClass.o
 
 clean:
-	rm -rf RowColumnClass.o RectangleClass.o project3.o mainOption.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  proj3.exe
+	rm -rf RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  proj3.exe
