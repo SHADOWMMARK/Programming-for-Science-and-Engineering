@@ -1,5 +1,5 @@
 ﻿project3.exe: RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
-	g++ RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o proj3.exe
+	g++ RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o project3.exe
 
 RowColumnClass.o: RowColumnClass.cpp RowColumnClass.h
 	g++ -c RowColumnClass.cpp -o RowColumnClass.o
