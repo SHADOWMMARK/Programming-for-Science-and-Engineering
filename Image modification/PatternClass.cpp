@@ -11,7 +11,7 @@
 using namespace std;
 // class Pattern Class function definitions
 PatternClass::PatternClass() {
-    initializeSuccess = true;
+    isValid = true;
     imagept = 0;
 }
 
@@ -22,11 +22,11 @@ PatternClass::~PatternClass() {
 }
 
 int PatternClass::getWidth() {
-    return width_;
+    return width;
 }
 
 int PatternClass::getHeight() {
-    return height_;
+    return height;
 }
 
 ColorClass* PatternClass::getpointer() {
@@ -51,46 +51,44 @@ void PatternClass::setPatternColor(int colorChoice) {
     }
 }
 
-bool PatternClass::isCorrectlyInitialized(string file_name) {
+bool PatternClass::isValidPat(string file_name) {
     // check the load status
-    ifstream inFile_;
-    inFile_.open(file_name.c_str());
-    if (inFile_.fail()) {
-        initializeSuccess = false;
-        //RESUBMISSION CODE UPDATE
+    ifstream inFile;
+    inFile.open(file_name.c_str());
+    if (inFile.fail()) {
+        isValid = false;
         cout << "File does not exist!" << endl;
         return false;
     }
-    inFile_ >> width_;
-    if ((inFile_.fail()) || (width_ <= 0)) {
-        initializeSuccess = false;
+    inFile >> width;
+    if ((inFile.fail()) || (width <= 0)) {
+        isValid = false;
         cout << "The width is not positive integer!" << endl;
         return false;
     }
     else {
         // correct width 
-        inFile_ >> height_;
-        if ((inFile_.fail()) || (height_ <= 0)) {
-            initializeSuccess = false;
-            //RESUBMISSION CODE UPDATE
+        inFile >> height;
+        if ((inFile.fail()) || (height <= 0)) {
+            isValid = false;
             cout << "The height is not positive integer!" << endl;
             return false;
         }
     }
     // start to read image
-    imagept = new ColorClass[width_ * height_];
+    imagept = new ColorClass[width * height];
 
     int oneDIndex; int temp_status;
     string temp; int elements = 0;
 
     // read pattern elements
-    while (!inFile_.eof()) {
-        for (int i = 0; i < height_; i++) {
-            for (int j = 0; j < width_; j++) {
-                oneDIndex = i * width_ + j;
-                inFile_ >> temp_status;
-                if (inFile_.fail()) {
-                    initializeSuccess = false;
+    while (!inFile.eof()) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                oneDIndex = i * width + j;
+                inFile >> temp_status;
+                if (inFile.fail()) {
+                    isValid = false;
                     cout << "Input should be positive integer! " << endl;
                     cout << "Or total number of 0 and 1 ";
                     cout << "is smaller than pattern size! ";
@@ -98,7 +96,7 @@ bool PatternClass::isCorrectlyInitialized(string file_name) {
                     return false;
                 }
                 else if ((temp_status != 0) && (temp_status != 1)) {
-                    initializeSuccess = false;
+                    isValid = false;
                     cout << "Input should be 0 or 1!";
                     cout << endl;
                 }
@@ -111,28 +109,18 @@ bool PatternClass::isCorrectlyInitialized(string file_name) {
                 }
             }
         }
-        inFile_ >> temp;
+        inFile >> temp;
         // more other information provided
         if (temp != "") {
-            inFile_.close();
+            inFile.close();
             elements += 1;
-            initializeSuccess = false;
+            isValid = false;
             //RESUBMISSION CODE UPDATE
             cout << "Total number of 0 and 1 is larger than pattern size! ";
             cout << endl;
             return false;
         }
     }
-    /*
-    inFile_.close();
-    if (elements != width_ * height_) {
-        initializeSuccess = false;
-        //RESUBMISSION CODE UPDATE
-        cout << "Total number of 0 and 1 don't match pattern size! ";
-        cout << endl;
-        return false;
-    }
-    */
     return true;
 }
 

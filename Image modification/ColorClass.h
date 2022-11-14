@@ -6,10 +6,10 @@ using namespace std;
 //class ColorClass declarations:contains information describing a color
 class ColorClass {
 private:
-    int amountofRed;
-    int amountofGreen;
-    int amountofBlue;
-    //RESUBMISSION CODE UPDATE
+    int redAmt;
+    int greenAmt;
+    int blueAmt;
+    
     int patternIndicatorIndex;
 public:
     ColorClass(); // default constructor
@@ -32,8 +32,9 @@ public:
     bool isSameColor(ColorClass colorCompare); // compare color to another
     bool checkSingle(int val, int bound); // check RGB valid or not
     int setToSingle(int val); // set the value to each color
-    int getRvalue(); // R values
-    int getGvalue(); // G values
-    int getBvalue(); // B values
+    
+    int getRvalue(); 
+    int getGvalue(); 
+    int getBvalue(); 
 };
 #endif

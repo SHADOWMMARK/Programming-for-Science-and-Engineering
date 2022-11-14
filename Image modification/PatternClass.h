@@ -7,16 +7,20 @@ using namespace std;
 //RESUBMISSION CODE UPDATE
 class PatternClass {
 private:
-    int width_;
-    int height_;
-    bool initializeSuccess;
+    int width;
+    int height;
+    bool isValid;
     ColorClass* imagept;
     ColorClass patternColor;
 public:
     PatternClass(); // default constructor
     // check the status
-    bool isCorrectlyInitialized(string file_name);
-    void setPatternColor(int colorChoice); // set color in image
+    bool isValidPat(string file_name);
+
+    // set color as chosen color
+    void setPatternColor(int colorChoice); 
+
+    // get methods to visit attributes
     int getWidth(); // get width value
     int getHeight(); // get height value
     ColorClass* getpointer(); // get pointer

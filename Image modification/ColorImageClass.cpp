@@ -11,7 +11,7 @@
 using namespace std;
 // class ColorImageClass function definitions
 ColorImageClass::ColorImageClass() {
-    initializeSuccess = true;
+    isValid = true;
     imagept = 0;
 }
 ColorImageClass::~ColorImageClass() {
@@ -20,32 +20,35 @@ ColorImageClass::~ColorImageClass() {
     // imagept = nullptr;
 }
 
-// make sure that P3 and positive width height
-// make sure pixel in 0 and 255
-// make sure all pixel elements in 0 and 255
-// make sure exact same number of inputs 
-bool ColorImageClass::isCorrectlyInitialized(string file_name) {
+/*
+    check the input ppm file valid or not
+    the ppm file should:
+    magic Number == P3;
+    width height positive;
+    pixel between 0 and 255
+*/
+bool ColorImageClass::isValidPpm(string file_name) {
     // check the load status
     ifstream inFile_;
     inFile_.open(file_name.c_str());
-    //RESUBMISSION CODE UPDATE
+    
     if (inFile_.fail()) {
-        initializeSuccess = false;
+        isValid = false;
         cout << "File does not exist!" << endl;
         return false;
     }
     // correct open
     inFile_ >> image_type;
     if ((inFile_.fail()) || (image_type != "P3")) {
-        initializeSuccess = false;
+        isValid = false;
         cout << "The type of PPM file is not P3!" << endl;
         return false;
     }
 
     inFile_ >> width_;
-    //RESUBMISSION CODE UPDATE
+    
     if ((inFile_.fail()) || (width_ <= 0)) {
-        initializeSuccess = false;
+        isValid = false;
         cout << "The width is not positive integer!" << endl;
         return false;
     }
@@ -53,7 +56,7 @@ bool ColorImageClass::isCorrectlyInitialized(string file_name) {
         // correct width 
         inFile_ >> height_;
         if ((inFile_.fail()) || (height_ <= 0)) {
-            initializeSuccess = false;
+            isValid = false;
             cout << "The height is not positive integer!" << endl;
             return false;
         }
@@ -61,8 +64,8 @@ bool ColorImageClass::isCorrectlyInitialized(string file_name) {
 
     inFile_ >> pixel_;
     if ((inFile_.fail()) || (pixel_ < COLOR_MIN) || (pixel_ > COLOR_MAX)) {
-        initializeSuccess = false;
-        //RESUBMISSION CODE UPDATE
+        isValid = false;
+        
         cout << "Max number of RGB values is not in valid range! " << endl;
         return false;
     }
@@ -77,16 +80,16 @@ bool ColorImageClass::isCorrectlyInitialized(string file_name) {
                 for (int j = 0; j < width_; j++) {
                     oneDIndex = i * width_ + j;
                     // read elements
-                    //RESUBMISSION CODE UPDATE
+                    
                     if (imagept[oneDIndex].readPixelFromFile(inFile_, \
                         pixel_)) {
                         // correct input
                         elements += 3;
                     }
                     else {
-                        initializeSuccess = false;
+                        isValid = false;
                         inFile_.close();
-                        //RESUBMISSION CODE UPDATE
+                        
                         cout << "RGB values are not valid input! ";
                         cout << endl;
                         cout << "Or Total number of RGB values doesn't ";
@@ -101,7 +104,7 @@ bool ColorImageClass::isCorrectlyInitialized(string file_name) {
             if (temp != "") {
                 inFile_.close();
                 elements += 1;
-                initializeSuccess = false;
+                isValid = false;
                 cout << "Total number of RGB values doesn't match image size!";
                 cout << endl;
                 return false;
@@ -145,7 +148,7 @@ void ColorImageClass::addRectangle(RectangleClass &rec, bool filled) {
             for (int j = (start_col_ - 1); j < end_col_; j++) {
                 oneDIndex_image = i * width_ + j;
                 // set rectangle color to pixel
-                //RESUBMISSION CODE UPDATE
+                
                 if (isIndexInRange(i,j)) {
                     imagept[oneDIndex_image].setTo(rec.getColor());
                 }
@@ -157,7 +160,7 @@ void ColorImageClass::addRectangle(RectangleClass &rec, bool filled) {
         // set color to upper and lower row
         for (int j = (start_col_ - 1); j < end_col_; j++) {
             oneDIndex_image = (start_row_ - 1) * width_ + j;
-            //RESUBMISSION CODE UPDATE
+            
             if (isIndexInRange(start_row_-1, j)) {
                 imagept[oneDIndex_image].setTo(rec.getColor());
             }
@@ -170,7 +173,7 @@ void ColorImageClass::addRectangle(RectangleClass &rec, bool filled) {
         // set color to left and right col
         for (int i = (start_row_ - 1); i < end_row_; i++) {
             oneDIndex_image = i * width_ + (start_col_ - 1);
-            //RESUBMISSION CODE UPDATE
+            
             if (isIndexInRange(i, start_col_-1)) {
                 imagept[oneDIndex_image].setTo(rec.getColor());
             }
@@ -198,7 +201,7 @@ void ColorImageClass::addPattern(PatternClass &pat, \
                 // set rectangle color to pixel
                 oneDIndex_image = (pRowStart + i - 1) \
                     * width_ + (pColStart + j - 1);
-                //RESUBMISSION CODE UPDATE
+                
                 if (isIndexInRange(pRowStart + i-1, pColStart+j-1)) {
                     imagept[oneDIndex_image].setTo(pat.getPatternColor());
                 }
@@ -223,7 +226,7 @@ void ColorImageClass::addImage(ColorImageClass &anoImage,\
                 oneDIndex_image = (iRowStart + i - 1) * width_ \
                     + (iColStart + j - 1);
                 // check whether the index is valid
-                //RESUBMISSION CODE UPDATE
+                
                 if (isIndexInRange(iRowStart+i-1, iColStart+j-1)) {
                     imagept[oneDIndex_image].setTo(*(anoImage.getpointer() \
                         + oneDIndex_anoImage));
@@ -233,7 +236,7 @@ void ColorImageClass::addImage(ColorImageClass &anoImage,\
     }
 }
 
-//RESUBMISSION CODE UPDATE
+
 bool ColorImageClass::isIndexInRange(int RowIndex, int ColIndex) {
     if ((RowIndex >= 0) && (RowIndex < height_)) {
         if ((ColIndex >= 0) && (ColIndex < width_)) {

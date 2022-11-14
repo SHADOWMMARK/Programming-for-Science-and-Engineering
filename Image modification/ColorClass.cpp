@@ -6,66 +6,66 @@
 using namespace std;
 // class ColorClass function definitions
 ColorClass::ColorClass() {
-    amountofRed = COLOR_MAX; 
-    amountofGreen = COLOR_MAX; 
-    amountofBlue = COLOR_MAX;
+    redAmt = COLOR_MAX; 
+    greenAmt = COLOR_MAX; 
+    blueAmt = COLOR_MAX;
 }
 ColorClass::ColorClass(int inRed, int inGreen, int inBlue) {
     // Red assign
     if (inRed > COLOR_MAX) {
-        amountofRed = COLOR_MAX;
+        redAmt = COLOR_MAX;
     }
     else if (inRed < COLOR_MIN) {
-        amountofRed = COLOR_MIN;
+        redAmt = COLOR_MIN;
     }
     else {
-        amountofRed = inRed;
+        redAmt = inRed;
     }
     // Green assign
     if (inGreen > COLOR_MAX) {
-        amountofGreen = COLOR_MAX;
+        greenAmt = COLOR_MAX;
     }
     else if (inGreen < COLOR_MIN) {
-        amountofGreen = COLOR_MIN;
+        greenAmt = COLOR_MIN;
     }
     else {
-        amountofGreen = inGreen;
+        greenAmt = inGreen;
     }
     // Blue assign
     if (inBlue > COLOR_MAX) {
-        amountofBlue = COLOR_MAX;
+        blueAmt = COLOR_MAX;
     }
     else if (inBlue < COLOR_MIN) {
-        amountofBlue = COLOR_MIN;
+        blueAmt = COLOR_MIN;
     }
     else {
-        amountofBlue = inBlue;
+        blueAmt = inBlue;
     }
 }
 void ColorClass::setToBlack() {
-    amountofRed = COLOR_MIN; 
-    amountofGreen = COLOR_MIN; 
-    amountofBlue = COLOR_MIN;
+    redAmt = COLOR_MIN; 
+    greenAmt = COLOR_MIN; 
+    blueAmt = COLOR_MIN;
 }
 void ColorClass::setToWhite() {
-    amountofRed = COLOR_MAX; 
-    amountofGreen = COLOR_MAX; 
-    amountofBlue = COLOR_MAX;
+    redAmt = COLOR_MAX; 
+    greenAmt = COLOR_MAX; 
+    blueAmt = COLOR_MAX;
 }
 void ColorClass::setToBlue() {
-    amountofRed = COLOR_MIN; 
-    amountofGreen = COLOR_MIN; 
-    amountofBlue = COLOR_MAX;
+    redAmt = COLOR_MIN; 
+    greenAmt = COLOR_MIN; 
+    blueAmt = COLOR_MAX;
 }
 void ColorClass::setToGreen() {
-    amountofRed = COLOR_MIN; 
-    amountofGreen = COLOR_MAX; 
-    amountofBlue = COLOR_MIN;
+    redAmt = COLOR_MIN; 
+    greenAmt = COLOR_MAX; 
+    blueAmt = COLOR_MIN;
 }
 void ColorClass::setToRed() {
-    amountofRed = COLOR_MAX; 
-    amountofGreen = COLOR_MIN; 
-    amountofBlue = COLOR_MIN;
+    redAmt = COLOR_MAX; 
+    greenAmt = COLOR_MIN; 
+    blueAmt = COLOR_MIN;
 }
 int ColorClass::setToSingle(int val) {
     int result;
@@ -82,9 +82,9 @@ int ColorClass::setToSingle(int val) {
 }
 bool ColorClass::setTo(int inRed, int inGreen, int inBlue) {
     // set value
-    amountofRed = setToSingle(inRed);
-    amountofGreen = setToSingle(inGreen);
-    amountofBlue = setToSingle(inBlue);
+    redAmt = setToSingle(inRed);
+    greenAmt = setToSingle(inGreen);
+    blueAmt = setToSingle(inBlue);
     // check clipping or not
     if (checkInRange(inRed) && checkInRange(inGreen) \
         && checkInRange(inBlue)) {
@@ -94,39 +94,39 @@ bool ColorClass::setTo(int inRed, int inGreen, int inBlue) {
 }
 bool ColorClass::adjustBrightness(double adjFactor) {
     bool temp_judge;
-    temp_judge = setTo(int(adjFactor * amountofRed), \
-        int(adjFactor * amountofGreen), \
-        int(adjFactor * amountofBlue));
+    temp_judge = setTo(int(adjFactor * redAmt), \
+        int(adjFactor * greenAmt), \
+        int(adjFactor * blueAmt));
     return temp_judge;
 }
 void ColorClass::setTo(ColorClass inColor) {
     // set color's component values to the same as those in "inColor"
-    amountofRed = inColor.amountofRed;
-    amountofGreen = inColor.amountofGreen;
-    amountofBlue = inColor.amountofBlue;
+    redAmt = inColor.redAmt;
+    greenAmt = inColor.greenAmt;
+    blueAmt = inColor.blueAmt;
 }
 bool ColorClass::addColor(ColorClass &rhs) {
     bool temp_judge;
-    temp_judge = setTo(int(amountofRed + rhs.amountofRed), \
-        int(amountofGreen + rhs.amountofGreen), \
-        int(amountofBlue + rhs.amountofBlue));
+    temp_judge = setTo(int(redAmt + rhs.redAmt), \
+        int(greenAmt + rhs.greenAmt), \
+        int(blueAmt + rhs.blueAmt));
     return temp_judge;
 }
 
-//RESUBMISSION CODE UPDATE
+
 bool ColorClass::readPixelFromFile(ifstream &inFile, int colorBound) {
-    inFile >> amountofRed >> amountofGreen >> amountofBlue;
+    inFile >> redAmt >> greenAmt >> blueAmt;
     if (inFile.fail()) {
         return false;
     }
     // check wrong input
-    if (!checkSingle(amountofRed, colorBound)) {
+    if (!checkSingle(redAmt, colorBound)) {
         return false;
     }
-    if (!checkSingle(amountofGreen, colorBound)) {
+    if (!checkSingle(greenAmt, colorBound)) {
         return false;
     }
-    if (!checkSingle(amountofBlue, colorBound)) {
+    if (!checkSingle(blueAmt, colorBound)) {
         return false;
     }
     return true;
@@ -139,13 +139,13 @@ void ColorClass::setIndicatorIndex(int index) {
     patternIndicatorIndex = index;
 }
 bool ColorClass::isSameColor(ColorClass colorCompare) {
-    if (amountofRed != colorCompare.amountofRed) {
+    if (redAmt != colorCompare.redAmt) {
         return false;
     }
-    else if (amountofGreen != colorCompare.amountofGreen) {
+    else if (greenAmt != colorCompare.greenAmt) {
         return false;
     }
-    else if (amountofBlue != colorCompare.amountofBlue) {
+    else if (blueAmt != colorCompare.blueAmt) {
         return false;
     }
     return true;
@@ -159,13 +159,13 @@ bool ColorClass::checkInRange(int val) {
 }
 
 int ColorClass::getRvalue() {
-    return amountofRed;
+    return redAmt;
 }
 int ColorClass::getGvalue() {
-    return amountofGreen;
+    return greenAmt;
 }
 int ColorClass::getBvalue() {
-    return amountofBlue;
+    return blueAmt;
 }
 
 bool ColorClass::checkSingle(int val, int bound) {
