@@ -26,4 +26,4 @@ PatternClass.o: PatternClass.cpp PatternClass.h
 	g++ -c PatternClass.cpp -o PatternClass.o
 
 clean:
-	rm -rf RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  proj3.exe
+	rm -rf RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  project3.exe
