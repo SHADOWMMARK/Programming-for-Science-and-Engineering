@@ -24,7 +24,7 @@ int main()
 {
     string fname;
     ColorImageClass curImg;
-    int mainOperation;
+    int mainOperation = -1;
     // get the name of the file then store in fname
     cout << "Enter string for PPM image file name to load: ";
     cin >> fname;
