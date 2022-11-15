@@ -9,30 +9,30 @@
 #include "ColorImageClass.h"
 
 using namespace std;
-// class Pattern Class function definitions
+// CTOR
 PatternClass::PatternClass() {
     isValid = true;
-    imagept = 0;
+    imgDot = 0;
 }
-
+// DTOR
 PatternClass::~PatternClass() {
-    delete[] imagept;
-    imagept = 0; //or = nullptr
-    // imagept = nullptr;
+    delete[] imgDot;
+    imgDot = 0; //or = nullptr
+    // imgDot = nullptr;
 }
 
+// GET METHODS
 int PatternClass::getWidth() {
     return width;
 }
-
 int PatternClass::getHeight() {
     return height;
 }
-
 ColorClass* PatternClass::getpointer() {
-    return imagept;
+    return imgDot;
 }
 
+// SET METHODS
 void PatternClass::setPatternColor(int colorChoice) {
     if (colorChoice == COLOR_RED) {
         patternColor.setToRed();
@@ -51,6 +51,7 @@ void PatternClass::setPatternColor(int colorChoice) {
     }
 }
 
+// judge if it is a valid pattern
 bool PatternClass::isValidPat(string file_name) {
     // check the load status
     ifstream inFile;
@@ -78,16 +79,18 @@ bool PatternClass::isValidPat(string file_name) {
     }
     // if no error begin to check all the pixels
     // start to read
-    imagept = new ColorClass[width * height];
+    imgDot = new ColorClass[width * height];
 
-    int oneDIndex; int temp_status;
+    int firstDimentionIdx; 
+    int temp_status;
     string temp; int elements = 0;
 
     // read pattern elements
+    // and check if error comes
     while (!inFile.eof()) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                oneDIndex = i * width + j;
+                firstDimentionIdx = i * width + j;
                 inFile >> temp_status;
                 if (inFile.fail()) {
                     isValid = false;
@@ -105,8 +108,8 @@ bool PatternClass::isValidPat(string file_name) {
                 // correct input
                 else {
                     // set pattern color to pixel
-                    imagept[oneDIndex].setTo(patternColor);
-                    imagept[oneDIndex].setIndicatorIndex(temp_status);
+                    imgDot[firstDimentionIdx].setTo(patternColor);
+                    imgDot[firstDimentionIdx].setIndicatorIndex(temp_status);
                     elements += 1;
                 }
             }

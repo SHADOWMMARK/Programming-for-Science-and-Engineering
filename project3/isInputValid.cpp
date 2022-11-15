@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "isCinValid.h"
+#include "isInputValid.h"
 using namespace std;
 
 // check whether the choice is valid

@@ -7,7 +7,7 @@
 #include "RectangleClass.h"
 #include "PatternClass.h"
 #include "ColorImageClass.h"
-#include "isCinValid.h"
+#include "isInputValid.h"
 #include "colorOptions.h"
 
 using namespace std;
@@ -74,7 +74,7 @@ int main()
             cout << endl;
             cout << "Enter int for rectangle specification method: ";
             cin >> methodChoice;
-            if (cin.fail() || !isCinValid(methodChoice, \
+            if (cin.fail() || !isInputValid(methodChoice, \
                 MIN_OPTION, CHOICE_MAX_METHOD)) {
                 cout << "Please print valid method number from 1-3!";
                 cout << endl;
@@ -193,7 +193,7 @@ int main()
                 int fill_;
                 colorOptions("rectangle");
                 cin >> color_rec;
-                if (cin.fail() || !isCinValid(color_rec, MIN_OPTION, \
+                if (cin.fail() || !isInputValid(color_rec, MIN_OPTION, \
                     CHOICE_MAX_COLOR)) {
                     cout << "Error in choosing rectangle color!" << endl;
                     cout << "Please choose from 1 to 5!" << endl;
@@ -208,7 +208,7 @@ int main()
                     cout << "Enter int for rectangle fill option: ";
                     cin >> fill_;
                     // Use start and end row col parameters to set up
-                    if (cin.fail() || !isCinValid(fill_, MIN_OPTION, \
+                    if (cin.fail() || !isInputValid(fill_, MIN_OPTION, \
                         CHOICE_MAX_FILLED)) {
                         cout << "Error in choosing Filled status!" << endl;
                         cout << "Please choose from 1 to 2!" << endl;
@@ -256,7 +256,7 @@ int main()
                     else {
                         colorOptions("pattern");
                         cin >> color_pat;
-                        if (cin.fail() || !isCinValid(color_pat, \
+                        if (cin.fail() || !isInputValid(color_pat, \
                             MIN_OPTION, CHOICE_MAX_COLOR)) {
                             cout << \
                                 "Error in choosing pattern color!" << endl;
@@ -303,7 +303,7 @@ int main()
                     else {
                         colorOptions("transparecy");
                         cin >> color_ima;
-                        if (cin.fail() || !isCinValid(color_ima, \
+                        if (cin.fail() || !isInputValid(color_ima, \
                             MIN_OPTION, CHOICE_MAX_COLOR)) {
                             cout << "Error in choosing image ";
                             cout << "transparecy color!" << endl;

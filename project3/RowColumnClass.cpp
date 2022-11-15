@@ -3,29 +3,34 @@
 #include "RowColumnClass.h"
 
 using namespace std;
-// class RowColumnClass function definitions
+// class RowColumnClass functions
+// ctors
 RowColumnClass::RowColumnClass() {
     // default value
-    rowIndex = 0;
-    columnIndex = 0;
+    rowIdx = 0;
+    colIdx = 0;
 }
 RowColumnClass::RowColumnClass(int inRow, int inCol) {
-    rowIndex = inRow;
-    columnIndex = inCol;
+    rowIdx = inRow;
+    colIdx = inCol;
 }
+
+// set methods
 void RowColumnClass::setRowCol(int inRow, int inCol) {
-    rowIndex = inRow;
-    columnIndex = inCol;
+    rowIdx = inRow;
+    colIdx = inCol;
 }
 void RowColumnClass::setRow(int inRow) {
-    rowIndex = inRow;
+    rowIdx = inRow;
 }
 void RowColumnClass::setCol(int inCol) {
-    columnIndex = inCol;
+    colIdx = inCol;
 }
+
+// get methods
 int RowColumnClass::getRow() {
-    return rowIndex;
+    return rowIdx;
 }
 int RowColumnClass::getCol() {
-    return columnIndex;
+    return colIdx;
 }

@@ -9,7 +9,7 @@ private:
     int width;
     int height;
     bool isValid;
-    ColorClass* imagept;
+    ColorClass* imgDot;
     ColorClass patternColor;
 public:
     PatternClass();

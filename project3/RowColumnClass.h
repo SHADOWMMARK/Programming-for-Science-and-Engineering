@@ -4,15 +4,15 @@
 //class RowColClass declarations
 class RowColumnClass {
 private:
-    int rowIndex;
-    int columnIndex;
+    int rowIdx;
+    int colIdx;
 public:
     RowColumnClass(); // default constructor
     RowColumnClass(int inRow, int inCol); // initial values
-    void setRowCol(int inRow, int inCol); // set to provided values
-    void setRow(int inRow); // set Row to provided values 
-    void setCol(int inCol); // set Col to provided values
-    int getRow(); // return Row values
-    int getCol(); // return Col values
+    void setRowCol(int inRow, int inCol); // set to input values
+    void setRow(int inRow); // set Row to input values 
+    void setCol(int inCol); // set Col to input values
+    int getRow(); // return Row
+    int getCol(); // return Col
 };
 #endif

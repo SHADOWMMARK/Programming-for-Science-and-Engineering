@@ -1,7 +1,7 @@
-﻿all: project3.exe
+﻿all: project3.exe clean
 
-project3.exe: RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
-	g++ RowColumnClass.o RectangleClass.o project3.o isCinValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o project3.exe
+project3.exe: RowColumnClass.o RectangleClass.o project3.o isInputValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
+	g++ RowColumnClass.o RectangleClass.o project3.o isInputValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o project3.exe
 
 RowColumnClass.o: RowColumnClass.cpp RowColumnClass.h
 	g++ -c RowColumnClass.cpp -o RowColumnClass.o
@@ -9,8 +9,8 @@ RowColumnClass.o: RowColumnClass.cpp RowColumnClass.h
 RectangleClass.o: RectangleClass.cpp RectangleClass.h
 	g++ -c RectangleClass.cpp -o RectangleClass.o
 
-isCinValid.o: isCinValid.cpp isCinValid.h
-	g++ -c isCinValid.cpp -o isCinValid.o
+isInputValid.o: isInputValid.cpp isInputValid.h
+	g++ -c isInputValid.cpp -o isInputValid.o
 
 colorOptions.o: colorOptions.cpp colorOptions.h
 	g++ -c colorOptions.cpp -o colorOptions.o
@@ -28,4 +28,4 @@ PatternClass.o: PatternClass.cpp PatternClass.h
 	g++ -c PatternClass.cpp -o PatternClass.o
 
 clean:
-	rm -rf *.o *.exe
+	rm -rf *.o

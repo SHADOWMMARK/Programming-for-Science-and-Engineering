@@ -6,12 +6,14 @@
 #include "RectangleClass.h"
 
 using namespace std;
-// class RectangleClass function definitions
+// ctor that takes four parameters
 RectangleClass::RectangleClass(int start_row, int start_col, \
     int end_row, int end_col) {
     startPosition.setRowCol(start_row, start_col);
     endPosition.setRowCol(end_row, end_col);
 }
+
+// set the Rec according to different color choice
 void RectangleClass::setRectangleColor(int colorChoice) {
     if (colorChoice == COLOR_RED) {
         color_rec.setToRed();
@@ -29,6 +31,8 @@ void RectangleClass::setRectangleColor(int colorChoice) {
         color_rec.setToWhite();
     }
 }
+
+// get methods to reach rectangle class attributes
 RowColumnClass RectangleClass::getStartPosition() {
     return startPosition;
 }
