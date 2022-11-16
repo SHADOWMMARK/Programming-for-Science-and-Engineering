@@ -33,20 +33,17 @@ ColorClass* PatternClass::getpointer() {
 }
 
 // SET METHODS
+// setPatColor according to input
 void PatternClass::setPatternColor(int colorChoice) {
     if (colorChoice == COLOR_RED) {
         patternColor.setToRed();
-    }
-    else if (colorChoice == COLOR_GREEN) {
+    } else if (colorChoice == COLOR_GREEN) {
         patternColor.setToGreen();
-    }
-    else if (colorChoice == COLOR_BLUE) {
+    } else if (colorChoice == COLOR_BLUE) {
         patternColor.setToBlue();
-    }
-    else if (colorChoice == COLOR_BLACK) {
+    } else if (colorChoice == COLOR_BLACK) {
         patternColor.setToBlack();
-    }
-    else if (colorChoice == COLOR_WHITE) {
+    } else if (colorChoice == COLOR_WHITE) {
         patternColor.setToWhite();
     }
 }
@@ -67,8 +64,7 @@ bool PatternClass::isValidPat(string file_name) {
         isValid = false;
         cout << "The width is not positive integer!" << endl;
         return false;
-    }
-    else {
+    } else {
         // if no error begin to check the next parameter
         inFile >> height;
         if ((inFile.fail()) || (height <= 0)) {
@@ -99,14 +95,12 @@ bool PatternClass::isValidPat(string file_name) {
                     cout << "is smaller than pattern size! ";
                     cout << endl;
                     return false;
-                }
-                else if ((temp_status != 0) && (temp_status != 1)) {
+                } else if ((temp_status != 0) && (temp_status != 1)) {
                     isValid = false;
                     cout << "Input should be 0 or 1!";
                     cout << endl;
-                }
-                // correct input
-                else {
+                } else {
+                    // if input valid
                     // set pattern color to pixel
                     imgDot[firstDimentionIdx].setTo(patternColor);
                     imgDot[firstDimentionIdx].setIndicatorIndex(temp_status);

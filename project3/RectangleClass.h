@@ -10,11 +10,13 @@ private:
     RowColumnClass endPosition;
     ColorClass color_rec;
 public:
-    // constructor
+    //ctor
     RectangleClass(int start_row, int start_col, int end_row, int end_col);
-    void setRectangleColor(int colorChoice); // choose color
-    RowColumnClass getStartPosition(); // get startPosition class
-    RowColumnClass getEndPosition(); // get endPosition class
-    ColorClass getColor(); // get color
+    // choose color to set the recColor
+    void setRectangleColor(int colorChoice);
+    // get methods
+    RowColumnClass getStartPosition();
+    RowColumnClass getEndPosition();
+    ColorClass getColor();
 };
 #endif

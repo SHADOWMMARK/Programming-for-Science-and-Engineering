@@ -1,4 +1,4 @@
-﻿all: project3.exe clean
+﻿all: project3.exe
 
 project3.exe: RowColumnClass.o RectangleClass.o project3.o isInputValid.o colorOptions.o ColorImageClass.o ColorClass.o Constant.h PatternClass.o
 	g++ RowColumnClass.o RectangleClass.o project3.o isInputValid.o colorOptions.o ColorImageClass.o ColorClass.o PatternClass.o  Constant.h -o project3.exe
@@ -28,4 +28,4 @@ PatternClass.o: PatternClass.cpp PatternClass.h
 	g++ -c PatternClass.cpp -o PatternClass.o
 
 clean:
-	rm -rf *.o
+	rm -rf *.o *.exe

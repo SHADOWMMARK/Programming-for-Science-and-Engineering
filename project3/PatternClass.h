@@ -22,7 +22,7 @@ public:
     // get methods to visit attributes
     int getWidth();
     int getHeight();
-    ColorClass* getpointer(); // get pointer
+    ColorClass* getpointer();
     ColorClass getPatternColor();
     
     ~PatternClass(); // dtor

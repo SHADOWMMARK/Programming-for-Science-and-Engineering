@@ -15,22 +15,34 @@ private:
     ColorClass* imagept;
     ColorClass transparency;
 public:
-    ColorImageClass(); // default constructor
+    // ctor
+    ColorImageClass();
+    // dtor
+    ~ColorImageClass();
+
     // check the status
     bool isValidPpm(string file_name);
-    bool isIndexInRange(int RowIndex, int ColIndex); // check index
-    void setTransparency(int colorChoice); // set transparency color in image
+
+     // check the index
+    bool isIndexInRange(int RowIndex, int ColIndex);
+
+     // set transparency color in image
+    void setTransparency(int colorChoice);
+
     // add rectangle to image
     void addRectangle(RectangleClass &rec, bool filled);
+
     // add pattern to image
     void addPattern(PatternClass &pat, int pRowStart, int pColStart);
+    
     // add image
     void addImage(ColorImageClass &anoImage, int iRowStart, int iColStart);
-    int getWidth(); // get width value
-    int getHeight(); // get height value
-    int getPixel(); // get pixel value
-    string getType(); // get type value
-    ColorClass* getpointer(); // get pointer
-    ~ColorImageClass(); // destructor
+
+    // get methods
+    int getWidth();
+    int getHeight();
+    int getPixel();
+    string getType();
+    ColorClass* getpointer();
 };
 #endif

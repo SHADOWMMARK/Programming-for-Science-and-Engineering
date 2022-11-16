@@ -49,22 +49,22 @@ int main()
         while (!isValidInput) {
             cin >> mainOperation;
             if (cin.fail() || (mainOperation > EXIT_OPTION)\
-             || (mainOperation < MIN_OPTION)) {
+                || (mainOperation < MIN_OPTION)) {
                 cin.clear();
                 cin.ignore(200, '\n');
                 cout << "Please print valid choice number from 1-5!" << endl;
                 cout << "Enter int for main menu choice: ";
-            }
-            else {
+            } else {
                 isValidInput = true;
             }
         }
-
+        // according to differnt mainOperation enter different funcs
+        // may print submenus
         if (mainOperation == MIN_OPTION) {
             // rectangle annotate
             int methodChoice;
-            int start_row; int start_col;
-            int end_row; int end_col;
+            int minRow; int minCol;
+            int maxRow; int maxCol;
             bool validSetup = false;
             cout << "1. Specify upper left and ";
             cout << "lower right corners of rectangle" << endl;
@@ -78,108 +78,99 @@ int main()
                 MIN_OPTION, CHOICE_MAX_METHOD)) {
                 cout << "Please print valid method number from 1-3!";
                 cout << endl;
-            }
-            // correct method
-            else {
+            } else {
+                // if method valid
                 // start upper left corner position define
+                // CHOSEN 1ST given the two points locations
+                // or CHOSEN 2ND give the one point and WH
                 if (methodChoice != CHOICE_MAX_METHOD) {
-                    // give two positions
+
                     cout << "Enter upper left corner row and column: ";
-                    cin >> start_row;
+                    cin >> minRow;
                     if (cin.fail()) {
                         cout << "Please input valid integers for ";
                         cout << "upper left row position!" << endl;
-                    }
-                    // valid start row
-                    else {
-                        cin >> start_col;
-                        if (cin.fail()) {
+                    } else {//if valid start row
+                        cin >> minCol;
+                        if (cin.fail()) 
+                        {
                             cout << "Please input valid integers for ";
                             cout << "upper left column position!" << endl;
-                        }
-                        // valid start column
-                        else {
+                        } else {//if valid start column
+                            // if give two positions
                             if (methodChoice == REC_TWO_POINTS) {
                                 cout << "Enter lower right ";
                                 cout << "corner row and column: ";
-                            }
-                            else {
+                            } else {
                                 cout << "Enter int for number of rows: ";
                             }
-                            cin >> end_row;
+                            cin >> maxRow;
                             if (cin.fail()) {
                                 cout << "Please input valid integers ";
                                 cout << "for rectangle row value!" << endl;
-                            }
-                            // valid end row
-                            else {
+                            } else {//if valid end row
                                 if (methodChoice == REC_POINT_AND_WH) {
                                     cout << "Enter ";
                                     cout << "int for number of columns: ";
                                 }
-                                cin >> end_col;
-                                if (cin.fail()) {
+                                cin >> maxCol;
+                                if(cin.fail()){
                                     cout << "Please input valid integers ";
                                     cout << "for rectangle column value!";
                                     cout << endl;
-                                }
-                                // valid end column
-                                else {
+                                } else {
+                                    //if valid end column
                                     validSetup = true;
                                     // add for method 2
-                                    if (methodChoice == REC_POINT_AND_WH) {
-                                        end_row = end_row + start_row;
-                                        end_col = end_col + start_col;
+                                    if (methodChoice == REC_POINT_AND_WH) 
+                                    {
+                                        maxRow += minRow;
+                                        maxCol += minCol;
+                                        // calculate the bound of
+                                        //  the row and col
                                     }
                                 }
                             }
                         }
                     }
-                }
-                else {
-                    // CHOSEN 3RD given the center and extent
-                    int center_row; 
-                    int center_col;
-                    int half_row; 
-                    int half_col;
+                } else {// CHOSEN 3RD given the center and extent
+                    int centerRow; 
+                    int centerCol;
+                    int halfRow; 
+                    int halfCol;
                     cout << "Enter rectangle center row and column: ";
-                    cin >> center_row;
+                    cin >> centerRow;
                     if (cin.fail()) {
                         cout << "Please input valid integers for ";
                         cout << "center row position!" << endl;
-                    }
-                    // to check if the center row valid
-                    else {
-                        cin >> center_col;
+                    } else { // to check if the center row valid
+                        cin >> centerCol;
                         if (cin.fail()) {
                             cout << "Please input valid integers for ";
                             cout << "center column position!" << endl;
-                        }
-                        // to check if the valid center column 
-                        else {
+                        } else { // to check if the valid center column 
                             cout << "Enter int for half number of rows: ";
-                            cin >> half_row;
+                            cin >> halfRow;
                             if (cin.fail()) {
                                 cout << "Please input valid integers ";
                                 cout << "for half row extent!" << endl;
-                            }
-                            // to check if the valid half row
-                            else {
+                            } else {// to check if the valid half row
                                 cout << "Enter int for ";
                                 cout << "half number of columns : ";
-                                cin >> half_col;
+                                cin >> halfCol;
                                 if (cin.fail()) {
                                     cout << "Please input valid integers ";
                                     cout << "for half column extent!";
                                     cout << endl;
-                                }
-                                // to check if the valid half column
-                                else {
+                                } else {
+                                    // to check if the valid half column
+                                    // calculate borders according to 
+                                    // received parameters
                                     validSetup = true;
-                                    start_row = center_row - half_row;
-                                    start_col = center_col - half_col;
-                                    end_row = center_row + half_row;
-                                    end_col = center_col + half_col;
+                                    minRow = centerRow - halfRow;
+                                    minCol = centerCol - halfCol;
+                                    maxRow = centerRow + halfRow;
+                                    maxCol = centerCol + halfCol;
                                 }
                             }
                         }
@@ -197,11 +188,9 @@ int main()
                     CHOICE_MAX_COLOR)) {
                     cout << "Error in choosing rectangle color!" << endl;
                     cout << "Please choose from 1 to 5!" << endl;
-                }
-                // correct color choice
-                else {
-                    RectangleClass Rectangle(start_row, start_col, \
-                        end_row, end_col);
+                } else {//if color choice valid
+                    RectangleClass Rectangle(minRow, minCol, \
+                        maxRow, maxCol);
                     Rectangle.setRectangleColor(color_rec);
                     cout << "1. No" << endl;
                     cout << "2. Yes" << endl;
@@ -244,16 +233,12 @@ int main()
                 if (cin.fail()) {
                     cout << "Please input valid integers for ";
                     cout << "pattern row position!" << endl;
-                }
-                // valid row
-                else {
+                } else { //if valid row
                     cin >> pcorner_col;
                     if (cin.fail()) {
                         cout << "Please input valid integers for pattern ";
                         cout << "column position!" << endl;
-                    }
-                    // valid column
-                    else {
+                    } else { //if valid column
                         colorOptions("pattern");
                         cin >> color_pat;
                         if (cin.fail() || !isInputValid(color_pat, \
@@ -261,17 +246,14 @@ int main()
                             cout << \
                                 "Error in choosing pattern color!" << endl;
                             cout << "Please choose from 1 to 5!" << endl;
-                        }
-                        // correct color
-                        else {
+                        } else {//if valid color
                             insert_pattern.setPatternColor(color_pat);
                             curImg.addPattern(insert_pattern, \
                                 pcorner_row, pcorner_col);
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 cout << "Please check this file again!" << endl;
             }
         }
@@ -291,16 +273,12 @@ int main()
                 if (cin.fail()) {
                     cout << "Please input valid integers for ";
                     cout << "image row position!" << endl;
-                }
-                // valid row
-                else {
+                } else {//if row valid 
                     cin >> icorner_col;
                     if (cin.fail()) {
                         cout << "Please input valid integers for ";
                         cout << "image column position!" << endl;
-                    }
-                    // valid column
-                    else {
+                    } else {//if column valid 
                         colorOptions("transparecy");
                         cin >> color_ima;
                         if (cin.fail() || !isInputValid(color_ima, \
@@ -308,17 +286,14 @@ int main()
                             cout << "Error in choosing image ";
                             cout << "transparecy color!" << endl;
                             cout << "Please choose from 1 to 5!" << endl;
-                        }
-                        // valid color
-                        else {
+                        } else {// if color valid
                             // add another image to image here
                             curImg.addImage(insert_image, \
                                 icorner_row, icorner_col);
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 cout << "Please check this file again!" << endl;
             }
         }
@@ -333,8 +308,7 @@ int main()
             outFile.open(outString.c_str());
             if (outFile.fail()) {
                 cout << "Fail to write the file!" << endl;
-            }
-            else {
+            } else {
                 // write header with four parameters
                 outFile << curImg.getType() << " ";
                 outFile << curImg.getWidth() << " ";
@@ -358,7 +332,7 @@ int main()
         cin.clear();
         cin.ignore(200, '\n');
     }
-    // if mainOperation ==5 , then exit
+    // if mainOperation == 5 , then exit
     cout << "Thank you for using this program";
     return 0;
 }

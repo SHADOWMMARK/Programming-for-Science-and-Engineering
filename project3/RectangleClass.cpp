@@ -17,17 +17,13 @@ RectangleClass::RectangleClass(int start_row, int start_col, \
 void RectangleClass::setRectangleColor(int colorChoice) {
     if (colorChoice == COLOR_RED) {
         color_rec.setToRed();
-    }
-    else if (colorChoice == COLOR_GREEN) {
+    } else if (colorChoice == COLOR_GREEN) {
         color_rec.setToGreen();
-    }
-    else if (colorChoice == COLOR_BLUE) {
+    } else if (colorChoice == COLOR_BLUE) {
         color_rec.setToBlue();
-    }
-    else if (colorChoice == COLOR_BLACK) {
+    } else if (colorChoice == COLOR_BLACK) {
         color_rec.setToBlack();
-    }
-    else if (colorChoice == COLOR_WHITE) {
+    } else if (colorChoice == COLOR_WHITE) {
         color_rec.setToWhite();
     }
 }

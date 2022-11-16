@@ -26,6 +26,7 @@ const int COLOR_GREEN = 2;
 const int COLOR_BLUE = 3;
 const int COLOR_BLACK = 4;
 const int COLOR_WHITE = 5;
+
 // upperbound of color submenu
 const int CHOICE_MAX_COLOR = 5; 
 #endif

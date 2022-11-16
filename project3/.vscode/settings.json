@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.mysql": "sql",
+        "fstream": "cpp",
+        "string": "cpp",
+        "iostream": "cpp"
+    }
+}
